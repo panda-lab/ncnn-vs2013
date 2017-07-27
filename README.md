@@ -7,7 +7,6 @@
 - https://github.com/lsy17096535/face-landmark
 - http://blog.csdn.net/fuwenyan/article/details/76105574
 - https://github.com/guozhongluo/ncnn-vs2015-examples-demo
-- 搬运工了 哈哈
 
 # Result
 ![](ncnn/result.jpg)
