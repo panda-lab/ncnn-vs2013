@@ -22,7 +22,7 @@
 
 namespace ncnn {
 
-void Mat::substract_mean_normalize(const float* mean_vals, const float* norm_vals)
+void Mat::substract_mean_normalize(const float* mean_vals, const float* norm_vals,const float std,bool flag)
 {
     int size = w * h;
 
@@ -77,6 +77,10 @@ void Mat::substract_mean_normalize(const float* mean_vals, const float* norm_val
             for (; remain>0; remain--)
             {
                 *ptr -= mean;
+				if (flag)
+				{
+					*ptr = (*ptr) / (0.000001 + std);
+				}
                 ptr++;
             }
         }

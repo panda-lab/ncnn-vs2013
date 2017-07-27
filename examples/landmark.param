@@ -1,0 +1,20 @@
+19 20
+Convolution      Conv1            1 1 data Conv1 20 5 1 1 2 1 500
+TanH             ActivationTangH1 1 1 Conv1 ActivationTangH1
+AbsVal           ActivationAbs1   1 1 ActivationTangH1 Abs1
+Pooling          Pool1            1 1 Abs1 Pool1 0 2 2 0 0
+Convolution      Conv2            1 1 Pool1 Conv2 48 5 1 1 2 1 24000
+TanH             ActivationTangH2 1 1 Conv2 ActivationTangH2
+AbsVal           ActivationAbs2   1 1 ActivationTangH2 Abs2
+Pooling          Pool2            1 1 Abs2 Pool2 0 2 2 0 0
+Convolution      Conv3            1 1 Pool2 Conv3 64 3 1 1 0 1 27648
+TanH             ActivationTangH3 1 1 Conv3 ActivationTangH3
+AbsVal           ActivationAbs3   1 1 ActivationTangH3 Abs3
+Pooling          Pool3            1 1 Abs3 Pool3 0 3 2 0 0
+Convolution      Conv4            1 1 Pool3 Conv4 80 3 1 1 0 1 46080
+TanH             ActivationTangH4 1 1 Conv4 ActivationTangH4
+AbsVal           ActivationAbs4   1 1 ActivationTangH4 Abs4
+InnerProduct     Dense1           1 1 Abs4 Dense1 512 1 655360
+TanH             ActivationTangH5 1 1 Dense1 ActivationTangH5
+AbsVal           ActivationAbs5   1 1 ActivationTangH5 Abs5
+InnerProduct     Dense3           1 1 Abs5 Dense3 136 1 69632

@@ -19,6 +19,8 @@
 #include <functional>
 #include "net.h"
 #include <time.h>
+//#include "image_processing/frontal_face_detector.h"
+//#include "image_io.h"
 
 #define VIDEO_MODEL 0
 
@@ -26,12 +28,34 @@ using namespace std;
 using namespace cv;
 
 ncnn::Net squeezenet;
-const float mean_vals[3] = { 104.f, 117.f, 123.f };
+float mean_vals[3] = { 158.f, 158.f, 158.f };
 
-static int detect_squeezenet(const cv::Mat& bgr, std::vector<float>& cls_scores)
+int main(int argc, char** argv)
 {
-	ncnn::Mat in = ncnn::Mat::from_pixels_resize(bgr.data, ncnn::Mat::PIXEL_BGR, bgr.cols, bgr.rows, 227, 227);
-	in.substract_mean_normalize(mean_vals, 0);
+	//初始化模型，以及分类标签
+	squeezenet.load_param("D:\\FaceIdentification\\ncnn-master\\examples\\landmark.param");
+	squeezenet.load_model("D:\\FaceIdentification\\ncnn-master\\examples\\landmark.bin");
+
+	//载入测试图片
+	const char* imagepath = "D:\\FaceIdentification\\ncnn-master\\examples\\3.jpg";
+	cv::Mat img = cv::imread(imagepath, CV_LOAD_IMAGE_COLOR);
+
+	cv::Mat img3;
+	cvtColor(img, img3, CV_RGB2GRAY);
+
+	cv::Mat img2;
+	img.convertTo(img2, CV_32FC1);
+
+	cv::Mat tmp_m, tmp_sd;
+	float m = 0, sd = 0;
+	cv::meanStdDev(img2, tmp_m, tmp_sd);
+	m = tmp_m.at<double>(0, 0);
+	sd = tmp_sd.at<double>(0, 0);
+
+
+	ncnn::Mat in = ncnn::Mat::from_pixels_resize(img3.data, ncnn::Mat::PIXEL_GRAY, img3.cols, img3.rows, 60, 60);
+	mean_vals[0] = m;
+	in.substract_mean_normalize(mean_vals, 0,sd,1);
 
 	ncnn::Extractor ex = squeezenet.create_extractor();
 	ex.set_light_mode(true);
@@ -41,142 +65,31 @@ static int detect_squeezenet(const cv::Mat& bgr, std::vector<float>& cls_scores)
 
 	clock_t start, finish;
 	start = clock();
-	ex.extract("prob", out);
+	ex.extract("Dense3", out);
 	finish = clock();
 	double totaltime;
 	totaltime = (double)(finish - start) / CLOCKS_PER_SEC;
 	printf("run time: %f\n", totaltime);
 
-	cls_scores.resize(out.c);
-	for (int j = 0; j<out.c; j++)
+	std::vector<float> feat;
+
+	for (int i = 0; i < out.c; i++)
 	{
-		const float* prob = out.data + out.cstep * j;
-		cls_scores[j] = prob[0];
+		const float* prob = out.data + out.cstep * i;
+		feat.push_back(prob[0]);
+
+	}
+	for (int i = 0; i < out.c / 2; i++)
+	{
+		Point x = Point(int(feat[2 * i] * 278), int(feat[2 * i + 1] * 289));
+		cv::circle(img, x, 0.1, Scalar(0, 0, 255), 4, 8, 0);
 	}
 
-	return 0;
-}
 
-static int print_topk(const std::vector<float>& cls_scores, int topk, vector<int>& index_result, vector<float>& score_result)
-{
-	// partial sort topk with index
-	int size = cls_scores.size();
-	std::vector< std::pair<float, int> > vec;
-	vec.resize(size);
-	for (int i = 0; i<size; i++)
-	{
-		vec[i] = std::make_pair(cls_scores[i], i);
-	}
-
-	std::partial_sort(vec.begin(), vec.begin() + topk, vec.end(), std::greater< std::pair<float, int> >());
-
-	// print topk and score
-	for (int i = 0; i<topk; i++)
-	{
-		float score = vec[i].first;
-		int index = vec[i].second;
-		index_result.push_back(index);
-		score_result.push_back(score);
-
-		//fprintf(stderr, "%d = %f\n", index, score);
-	}
-
-	return 0;
-}
-
-
-static int load_labels(string path, vector<string>& labels)
-{
-	FILE* fp = fopen(path.c_str(), "r");
-
-	while (!feof(fp))
-	{
-		char str[1024];
-		fgets(str, 1024, fp);  //读取一行
-		string str_s(str);
-
-		if (str_s.length() > 0)
-		{
-			for (int i = 0; i < str_s.length(); i++)
-			{
-				if (str_s[i] == ' ')
-				{
-					string strr = str_s.substr(i, str_s.length() - i - 1);
-					labels.push_back(strr);
-					i = str_s.length();
-				}
-			}
-		}
-	}
-	return 0;
-}
-
-
-int main(int argc, char** argv)
-{
-	//初始化模型，以及分类标签
-	squeezenet.load_param("D:\\FaceIdentification\\ncnn-master\\examples\\squeezenet_v1.1.param");
-	squeezenet.load_model("D:\\FaceIdentification\\ncnn-master\\examples\\squeezenet_v1.1.bin");
-	vector<string> labels;
-	load_labels("D:\\FaceIdentification\\ncnn-master\\examples\\synset_words.txt", labels);
-
-#if VIDEO_MODEL
-	VideoCapture cap(1);
-
-	Mat frame;
-	while (1)
-	{
-		cap >> frame;
-		if (!frame.data)
-			break;
-
-		//前馈run squeezenet 网络
-		std::vector<float> cls_scores;
-		detect_squeezenet(frame, cls_scores);
-
-		//查找识别结果标签
-		vector<int> index;
-		vector<float> score;
-		print_topk(cls_scores, 3, index, score);
-
-		//图形化显示识别结果
-		for (int i = 0; i < index.size(); i++)
-		{
-			cv::putText(frame, labels[index[i]], Point(10, 10 + 30 * i), CV_FONT_HERSHEY_SIMPLEX, 0.5, Scalar(255, 100, 0), 2, 2);
-		}
-
-		imshow("frame", frame);
-		waitKey(1);
-	}
-#else
-	//载入测试图片
-	const char* imagepath = "D:\\FaceIdentification\\ncnn-master\\examples\\cat.jpg";
-	cv::Mat m = cv::imread(imagepath, CV_LOAD_IMAGE_COLOR);
-	if (m.empty())
-	{
-		fprintf(stderr, "cv::imread %s failed\n", imagepath);
-		return -1;
-	}
-
-	//前馈run squeezenet 网络
-	std::vector<float> cls_scores;
-	detect_squeezenet(m, cls_scores);
-
-	//查找识别结果标签
-	vector<int> index;
-	vector<float> score;
-	print_topk(cls_scores, 3, index, score);
-
-	//图形化显示识别结果
-	for (int i = 0; i < index.size(); i++)
-	{
-		cv::putText(m, labels[index[i]], Point(10, 10 + 30 * i), CV_FONT_HERSHEY_SIMPLEX, 0.5, Scalar(255, 100, 0), 2, 2);
-	}
-
-	imshow("m", m);
-	imwrite("dog_result.jpg", m);
+	imshow("m", img);
+	imwrite("result.jpg", img);
 	waitKey(0);
-#endif
+
 
 	return 0;
 }

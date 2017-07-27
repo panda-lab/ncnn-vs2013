@@ -111,7 +111,7 @@ public:
     void to_pixels_resize(unsigned char* pixels, int type, int target_width, int target_height);
 
     // substract channel-wise mean values, then multiply by normalize values, pass 0 to skip
-    void substract_mean_normalize(const float* mean_vals, const float* norm_vals);
+	void substract_mean_normalize(const float* mean_vals, const float* norm_vals, const float std,bool flag);
 
     // convenient construct from half precisoin floating point data
     static Mat from_float16(const unsigned short* data, int size);
