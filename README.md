@@ -9,5 +9,5 @@
 - https://github.com/guozhongluo/ncnn-vs2015-examples-demo
 - 搬运工了 哈哈
 
-## result
-![](example/result.jpg)
+# result
+![](ncnn/result.jpg)
