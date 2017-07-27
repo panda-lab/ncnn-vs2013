@@ -81,7 +81,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>D:\NugetPackages\OpenCV.2.4.10\build\native\include\opencv2;D:\NugetPackages\OpenCV.2.4.10\build\native\include\opencv;D:\NugetPackages\OpenCV.2.4.10\build\native\include;D:\FaceIdentification\ncnn-master\src\layer;D:\FaceIdentification\ncnn-master\src;$(IncludePath)</IncludePath>
+    <IncludePath>D:\NugetPackages\OpenCV.2.4.10\build\native\include\opencv2;D:\NugetPackages\OpenCV.2.4.10\build\native\include\opencv;D:\NugetPackages\OpenCV.2.4.10\build\native\include;..\src\layer;..\src;$(IncludePath)</IncludePath>
     <LibraryPath>D:\NugetPackages\OpenCV.2.4.10\build\native\lib\x64\v120\Release;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

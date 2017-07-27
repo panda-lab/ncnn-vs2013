@@ -33,11 +33,11 @@ float mean_vals[3] = { 158.f, 158.f, 158.f };
 int main(int argc, char** argv)
 {
 	//初始化模型，以及分类标签
-	squeezenet.load_param("D:\\FaceIdentification\\ncnn-master\\examples\\landmark.param");
-	squeezenet.load_model("D:\\FaceIdentification\\ncnn-master\\examples\\landmark.bin");
+	squeezenet.load_param("../examples/landmark.param");
+	squeezenet.load_model("../examples/landmark.bin");
 
 	//载入测试图片
-	const char* imagepath = "D:\\FaceIdentification\\ncnn-master\\examples\\3.jpg";
+	const char* imagepath = "../examples/3.jpg";
 	cv::Mat img = cv::imread(imagepath, CV_LOAD_IMAGE_COLOR);
 
 	cv::Mat img3;
