@@ -1,0 +1,257 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{F52E915E-F3CD-4607-A6EE-64A2FB7C56AE}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>ncnn</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>D:\FaceIdentification\ncnn-master\src\layer;D:\FaceIdentification\ncnn-master\src;D:\NugetPackages\OpenCV.2.4.10\build\native\include\opencv2;D:\NugetPackages\OpenCV.2.4.10\build\native\include\opencv;D:\NugetPackages\OpenCV.2.4.10\build\native\include;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\NugetPackages\OpenCV.2.4.10\build\native\lib\x64\v120\Debug;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>D:\FaceIdentification\ncnn-master\src\layer;D:\FaceIdentification\ncnn-master\src;D:\NugetPackages\OpenCV.2.4.10\build\native\include\opencv2;D:\NugetPackages\OpenCV.2.4.10\build\native\include\opencv;D:\NugetPackages\OpenCV.2.4.10\build\native\include;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\NugetPackages\OpenCV.2.4.10\build\native\lib\x64\v120\Debug;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>opencv_core2410d.lib;opencv_highgui2410d.lib;opencv_imgproc2410d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>opencv_core2410d.lib;opencv_highgui2410d.lib;opencv_imgproc2410d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\examples\squeezenet.cpp" />
+    <ClCompile Include="..\src\blob.cpp" />
+    <ClCompile Include="..\src\cpu.cpp" />
+    <ClCompile Include="..\src\layer.cpp" />
+    <ClCompile Include="..\src\layer\absval.cpp" />
+    <ClCompile Include="..\src\layer\argmax.cpp" />
+    <ClCompile Include="..\src\layer\batchnorm.cpp" />
+    <ClCompile Include="..\src\layer\bias.cpp" />
+    <ClCompile Include="..\src\layer\bnll.cpp" />
+    <ClCompile Include="..\src\layer\concat.cpp" />
+    <ClCompile Include="..\src\layer\convolution.cpp" />
+    <ClCompile Include="..\src\layer\crop.cpp" />
+    <ClCompile Include="..\src\layer\deconvolution.cpp" />
+    <ClCompile Include="..\src\layer\dropout.cpp" />
+    <ClCompile Include="..\src\layer\eltwise.cpp" />
+    <ClCompile Include="..\src\layer\elu.cpp" />
+    <ClCompile Include="..\src\layer\embed.cpp" />
+    <ClCompile Include="..\src\layer\exp.cpp" />
+    <ClCompile Include="..\src\layer\flatten.cpp" />
+    <ClCompile Include="..\src\layer\innerproduct.cpp" />
+    <ClCompile Include="..\src\layer\input.cpp" />
+    <ClCompile Include="..\src\layer\log.cpp" />
+    <ClCompile Include="..\src\layer\lrn.cpp" />
+    <ClCompile Include="..\src\layer\lstm.cpp" />
+    <ClCompile Include="..\src\layer\memorydata.cpp" />
+    <ClCompile Include="..\src\layer\mvn.cpp" />
+    <ClCompile Include="..\src\layer\pooling.cpp" />
+    <ClCompile Include="..\src\layer\power.cpp" />
+    <ClCompile Include="..\src\layer\prelu.cpp" />
+    <ClCompile Include="..\src\layer\proposal.cpp" />
+    <ClCompile Include="..\src\layer\reduction.cpp" />
+    <ClCompile Include="..\src\layer\relu.cpp" />
+    <ClCompile Include="..\src\layer\reshape.cpp" />
+    <ClCompile Include="..\src\layer\rnn.cpp" />
+    <ClCompile Include="..\src\layer\roipooling.cpp" />
+    <ClCompile Include="..\src\layer\scale.cpp" />
+    <ClCompile Include="..\src\layer\sigmoid.cpp" />
+    <ClCompile Include="..\src\layer\slice.cpp" />
+    <ClCompile Include="..\src\layer\softmax.cpp" />
+    <ClCompile Include="..\src\layer\split.cpp" />
+    <ClCompile Include="..\src\layer\spp.cpp" />
+    <ClCompile Include="..\src\layer\tanh.cpp" />
+    <ClCompile Include="..\src\layer\threshold.cpp" />
+    <ClCompile Include="..\src\layer\tile.cpp" />
+    <ClCompile Include="..\src\layer\x86\convolution_x86.cpp" />
+    <ClCompile Include="..\src\mat.cpp" />
+    <ClCompile Include="..\src\mat_pixel.cpp" />
+    <ClCompile Include="..\src\net.cpp" />
+    <ClCompile Include="..\src\opencv.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\blob.h" />
+    <ClInclude Include="..\src\cpu.h" />
+    <ClInclude Include="..\src\layer.h" />
+    <ClInclude Include="..\src\layer\absval.h" />
+    <ClInclude Include="..\src\layer\argmax.h" />
+    <ClInclude Include="..\src\layer\batchnorm.h" />
+    <ClInclude Include="..\src\layer\bias.h" />
+    <ClInclude Include="..\src\layer\bnll.h" />
+    <ClInclude Include="..\src\layer\concat.h" />
+    <ClInclude Include="..\src\layer\convolution.h" />
+    <ClInclude Include="..\src\layer\crop.h" />
+    <ClInclude Include="..\src\layer\deconvolution.h" />
+    <ClInclude Include="..\src\layer\dropout.h" />
+    <ClInclude Include="..\src\layer\eltwise.h" />
+    <ClInclude Include="..\src\layer\elu.h" />
+    <ClInclude Include="..\src\layer\embed.h" />
+    <ClInclude Include="..\src\layer\exp.h" />
+    <ClInclude Include="..\src\layer\flatten.h" />
+    <ClInclude Include="..\src\layer\innerproduct.h" />
+    <ClInclude Include="..\src\layer\input.h" />
+    <ClInclude Include="..\src\layer\log.h" />
+    <ClInclude Include="..\src\layer\lrn.h" />
+    <ClInclude Include="..\src\layer\lstm.h" />
+    <ClInclude Include="..\src\layer\memorydata.h" />
+    <ClInclude Include="..\src\layer\mvn.h" />
+    <ClInclude Include="..\src\layer\pooling.h" />
+    <ClInclude Include="..\src\layer\power.h" />
+    <ClInclude Include="..\src\layer\prelu.h" />
+    <ClInclude Include="..\src\layer\proposal.h" />
+    <ClInclude Include="..\src\layer\reduction.h" />
+    <ClInclude Include="..\src\layer\relu.h" />
+    <ClInclude Include="..\src\layer\reshape.h" />
+    <ClInclude Include="..\src\layer\rnn.h" />
+    <ClInclude Include="..\src\layer\roipooling.h" />
+    <ClInclude Include="..\src\layer\scale.h" />
+    <ClInclude Include="..\src\layer\sigmoid.h" />
+    <ClInclude Include="..\src\layer\slice.h" />
+    <ClInclude Include="..\src\layer\softmax.h" />
+    <ClInclude Include="..\src\layer\split.h" />
+    <ClInclude Include="..\src\layer\spp.h" />
+    <ClInclude Include="..\src\layer\tanh.h" />
+    <ClInclude Include="..\src\layer\threshold.h" />
+    <ClInclude Include="..\src\layer\tile.h" />
+    <ClInclude Include="..\src\layer\x86\avx_mathfun.h" />
+    <ClInclude Include="..\src\layer\x86\convolution_3x3.h" />
+    <ClInclude Include="..\src\layer\x86\convolution_5x5.h" />
+    <ClInclude Include="..\src\layer\x86\convolution_x86.h" />
+    <ClInclude Include="..\src\layer\x86\sse_mathfun.h" />
+    <ClInclude Include="..\src\mat.h" />
+    <ClInclude Include="..\src\net.h" />
+    <ClInclude Include="..\src\opencv.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\src\platform.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
