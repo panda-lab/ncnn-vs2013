@@ -32,11 +32,11 @@ float mean_vals[3] = { 158.f, 158.f, 158.f };
 
 int main(int argc, char** argv)
 {
-	//��ʼ��ģ�ͣ��Լ������ǩ
+	//初始化模型，以及分类标签
 	squeezenet.load_param("../examples/landmark.param");
 	squeezenet.load_model("../examples/landmark.bin");
 
-	//�������ͼƬ
+	//载入测试图片
 	const char* imagepath = "../examples/3.jpg";
 	cv::Mat img = cv::imread(imagepath, CV_LOAD_IMAGE_COLOR);
 
@@ -81,7 +81,7 @@ int main(int argc, char** argv)
 	}
 	for (int i = 0; i < out.c / 2; i++)
 	{
-		Point x = Point(int(feat[2 * i] * 278), int(feat[2 * i + 1] * 289));
+		Point x = Point(int(feat[2 * i] * 278), int(feat[2 * i + 1] * 289));//这里的278、289是图像的分辨率，我偷懒了
 		cv::circle(img, x, 0.1, Scalar(0, 0, 255), 4, 8, 0);
 	}
 
